@@ -18,10 +18,11 @@ npm install hexo-diagram --save
 
 Syntax:
 
-```markdown
+<pre lang="markdown"><code>
 ```[diagram_type]
 [diagram_code]
-``````
+```
+</code></pre>
 
 Valid `diagram_type` values are:
 
@@ -30,13 +31,14 @@ Valid `diagram_type` values are:
 
 If user does not specify one, `sequence` will be used as default.
 
-```markdown
+<pre lang="markdown"><code>
 ```sequence
 @found "You", ->
   @message "Think", ->
     @message "Write your idea", "JUMLY", ->
       @create "Diagram"
 jumly.css "background-color":"#8CC84B"
-``````
+```
+</code></pre>
 
 For more information on how to write jumly syntax, visit [Jumly](http://jumly.tmtk.net/).
