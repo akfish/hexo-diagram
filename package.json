@@ -1,0 +1,31 @@
+{
+  "name": "hexo-diagram",
+  "version": "0.0.1",
+  "description": "Render UML sequence diagram in your blog",
+  "main": "./bin/index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akfish/hexo-diagram.git"
+  },
+  "keywords": [
+    "website",
+    "blog",
+    "cms",
+    "framework",
+    "hexo",
+    "mathjax"
+  ],
+  "author": "AKFish <akfish@gmail.com> (http://catx.me)",
+  "license": {
+    "type": "GPLv2",
+    "url": "https://raw.github.com/akfish/hexo-diagram/master/LICENSE"
+  },
+  "engines": {
+    "hexo": "*"
+  },
+  "dependencies": {
+    "phantom": "~0.5.7",
+    "system": "~0.1.0",
+    "phantomjs": "~1.9.12"
+  }
+}
