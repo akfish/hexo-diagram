@@ -28,9 +28,31 @@ var wrapCode = function (type, code) {
 module.exports = function (type, code, output, callback) {
   phantom.create(function (ph) {
     ph.createPage(function (page) {
+      page.set('onConsoleMessage', function(msg) {
+        console.log('CONSOLE: ' + msg);
+      });
       page.setContent(head + wrapCode(type, code) + tail, "./", function(status) {
         page.evaluate(function() {
-          return $('body').children().last()[0].getBoundingClientRect();
+          function growRect(current, next) {
+            var n = {}
+            n.left = Math.min(current.left, next.left);
+            n.top = Math.min(current.top, next.top);
+            n.right = Math.max(current.right, next.right);
+            n.bottom = Math.max(current.bottom, next.bottom);
+            n.height = n.bottom - n.top;
+            n.width = n.right - n.left;
+            return n;
+          }
+
+          var diagram = $('body').children().last();
+          var r = diagram[0].getBoundingClientRect();
+          function walk(node) {
+            var rect = node[0].getBoundingClientRect();
+            r = growRect(r, rect);
+            node.children().each(function () { walk($(this)); })
+          }
+          walk(diagram);
+          return r;
         }, function(rect) {
           page.set('clipRect', rect);
           page.render(output);

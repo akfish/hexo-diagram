@@ -1,0 +1,18 @@
+var jumly = require('./generators/jumly');
+
+var code = [
+  '@found "Browser", ->',
+  '  @alt {',
+  '    "[200]": -> @message "GET href resources", "HTTP Server"',
+  '    "[301]": -> @ref "GET the moved page"',
+  '    "[404]": -> @ref "show NOT FOUND"',
+  '  }',
+  '@find(".ref").css(width:256, "padding-bottom":4)',
+  '  .find(".tag").css float:"left"',
+  'get_the_moved_page.css "background-color":"#80c080"',
+  'show_not_found.css "background-color":"#f0b0b0"',
+].join('\n');
+
+jumly('sequence', code, 'test.png', function() {
+  console.log("Done");
+});
