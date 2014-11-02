@@ -21,8 +21,7 @@ Syntax:
 ```markdown
 ```[diagram_type]
 [diagram_code]
-```
-```
+``````
 
 Valid `diagram_type` values are:
 
@@ -38,7 +37,6 @@ If user does not specify one, `sequence` will be used as default.
     @message "Write your idea", "JUMLY", ->
       @create "Diagram"
 jumly.css "background-color":"#8CC84B"
-```
-```
+``````
 
 For more information on how to write jumly syntax, visit [Jumly](http://jumly.tmtk.net/).
