@@ -2,13 +2,15 @@ var async = require('async');
 var Promise = require('bluebird');
 var path = require('path');
 var jumly = require('./generators/jumly');
+var flowchart = require('./generators/flowchart');
 
 
 var r = /\n*(`{3,}|~{3,}) *(.+)? *\n([\s\S]+?)\s*\1\n*/g
 
 var generators = {
   'sequence': jumly,
-  'robustness': jumly
+  'robustness': jumly,
+  'flow': flowchart
 }
 console.log("Hexo Diagram Filter")
 var base = hexo.source.base;

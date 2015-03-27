@@ -20,14 +20,6 @@ var wrapCode = function (type, code) {
     ].join('\n');
 }
 
-var wrapCode = function (type, code) {
-  return [
-      "<script type='text/jumly+" + type + "'>",
-      code,
-      "</script>"
-    ].join('\n');
-}
-
 var to_evaluate = function (ph, page) {
   return function() {
     function growRect(current, next) {
