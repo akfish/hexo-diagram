@@ -1,12 +1,21 @@
 hexo-diagram
 ===================
 
-Render UML diagrams in your blog powered by [Jumly](http://jumly.tmtk.net/).
+## Features
 
-## Feature
+Render diagrams in your blog:
+* Sequence Diagram - powered by [Jumly][Jumly]
+* Robustness Diagram - powered by [Jumly][Jumly]
+* Flow Chart - powered by [flowchart.js][flowchart.js]
 
-* Sequence diagram
-* Robustness diagram
+See those renders' website for help information on syntax.
+
+### Limitations of flowchart
+
+* Diagrams are generated statically. Any interactive features (i.e. node links) will be lost.
+* Custom styling is not supported.
+
+Those issues will be fixed in later versions.
 
 ## Install
 
@@ -28,6 +37,7 @@ Valid `diagram_type` values are:
 
 * sequence
 * robustness
+* flow
 
 If user does not specify one, `sequence` will be used as default.
 
@@ -41,4 +51,7 @@ jumly.css "background-color":"#8CC84B"
 ```
 </code></pre>
 
-For more information on how to write jumly syntax, visit [Jumly](http://jumly.tmtk.net/).
+For more information on how to write jumly syntax, visit [Jumly][Jumly].
+
+[Jumly]: http://jumly.tmtk.net/
+[flowchart.js]: http://adrai.github.io/flowchart.js/
