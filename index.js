@@ -13,7 +13,9 @@ var generators = {
 console.log("Hexo Diagram Filter")
 var base = hexo.source.base;
 var diagramFolder = path.join(base, 'diagrams');
-console.log(diagramFolder);
+var env = require('./env');
+env.diagramFolder = diagramFolder;
+console.log(env);
 
 hexo.extend.filter.register('before_post_render', function(data){
   // Execute generators
@@ -36,8 +38,8 @@ hexo.extend.filter.register('before_post_render', function(data){
         }
         console.log("Generate: [" + lang + "]" + output);
         var gen = generators[lang];
-        gen(lang, code, path.join(diagramFolder, output), function (err) {
-          var r = {src: str, output: output};
+        gen(lang, code, output, function (err, res) {
+          var r = {src: str, output: output, result: res};
           data._diagram_cache[code] = r;
           cb(err, r);
         })
@@ -68,11 +70,12 @@ hexo.extend.filter.register('before_post_render', function(data){
       // Results
       results.forEach(function (o) {
         diagrams[o.src].output = o.output;
+        diagrams[o.src].result = o.result;
       })
       // Replace output
       data.raw = data.content = data.content.replace(r, function(match, ticks, lang, code, offset, str) {
         if (match in diagrams && diagrams[match].output)
-          return "\n![](/diagrams/" + diagrams[match].output + ")\n";
+          return "\n" + diagrams[match].result + "\n";
         return match;
       });
       // Done
