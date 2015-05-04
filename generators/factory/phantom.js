@@ -11,13 +11,13 @@ function makeGenerator(styles, scripts, wrapper, to_evaluate, after_evaluate) {
 
   if (styles) {
     styles.forEach(function(css) {
-      head.push("<link href='" + base + css + "' rel='stylesheet' />");
+      head.push("<link href='file://" + base + css + "' rel='stylesheet' />");
     });
   }
 
   if (scripts) {
     scripts.forEach(function(js) {
-      head.push("<script src='" + base + js + "'></script>");
+      head.push("<script src='file://" + base + js + "'></script>");
     });
   }
   head = head.concat([
@@ -34,7 +34,8 @@ function makeGenerator(styles, scripts, wrapper, to_evaluate, after_evaluate) {
         page.set('onConsoleMessage', function(msg) {
           console.log('CONSOLE: ' + msg);
         });
-        page.setContent(head + wrapper(type, code) + tail, "./", function(status) {
+        var content = head + wrapper(type, code) + tail;
+        page.setContent(content, "./", function(status) {
           page.evaluate(to_evaluate(ph, page), after_evaluate(ph, page, output, callback));
         })
       });
