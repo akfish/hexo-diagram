@@ -1,6 +1,12 @@
 var phantom = require('phantom');
 var path = require('path');
 var base = path.resolve(__dirname, '../../assets').replace(/\\/g, "/") + "/"
+var os = require('os');
+
+// Ugly fix for local assets URL
+if (os.platform() != 'win32') {
+  base = "file://" + base;
+}
 
 function makeGenerator(styles, scripts, wrapper, to_evaluate, after_evaluate) {
   var head = [
@@ -11,13 +17,13 @@ function makeGenerator(styles, scripts, wrapper, to_evaluate, after_evaluate) {
 
   if (styles) {
     styles.forEach(function(css) {
-      head.push("<link href='file://" + base + css + "' rel='stylesheet' />");
+      head.push("<link href='" + base + css + "' rel='stylesheet' />");
     });
   }
 
   if (scripts) {
     scripts.forEach(function(js) {
-      head.push("<script src='file://" + base + js + "'></script>");
+      head.push("<script src='" + base + js + "'></script>");
     });
   }
   head = head.concat([
