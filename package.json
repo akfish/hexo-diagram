@@ -1,6 +1,6 @@
 {
   "name": "hexo-diagram",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Render UML sequence diagram in your blog",
   "main": "./bin/index",
   "repository": {
